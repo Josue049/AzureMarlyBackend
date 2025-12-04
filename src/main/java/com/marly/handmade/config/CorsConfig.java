@@ -8,18 +8,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig {
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer corsConfig() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(
-                            "https://marly.azurewebsites.net"
-                        )
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(false)
-                        .maxAge(3600);
+                        .allowedOrigins("*")   // permite todos los dominios
+                        .allowedMethods("*")   // permite todos los métodos HTTP
+                        .allowedHeaders("*")   // permite todas las cabeceras
+                        .allowCredentials(false);
             }
         };
     }
